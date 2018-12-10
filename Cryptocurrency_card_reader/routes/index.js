@@ -12,5 +12,7 @@ router.get('/getBalance', get_bank.getBalance);
 //modify_bank
 router.post('/deploy', modify_bank.deployBank);
 router.post('/deposit', modify_bank.deposit);
+router.post('/transfer', modify_bank.transfer);
+router.post('/transferToUser', modify_bank.transferToUser);
 
 module.exports = router;

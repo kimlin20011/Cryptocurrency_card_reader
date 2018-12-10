@@ -9,7 +9,7 @@ const unlockAccount = require('./unlock');
 module.exports = async function deploy(_data) {
     let Bytecode = config.Bank.bytecode;
     let Abi = config.Bank.abi;
-//取得目前geth中第一個account
+    //取得目前geth中第一個account
     let nowAccount ="";
     await web3.eth.getAccounts((err, res) => {nowAccount = res[0]});
     console.log(`nowAccount:${nowAccount}`);
