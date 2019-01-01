@@ -6,6 +6,7 @@ var web3 = new Web3;
 web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
 const config = require('../config/development_config');
 const unlockAccount = require('./unlock');
+const db = require('./connection_db');
 
 module.exports = async function transfer(_data) {
     //let Bytecode = config.Bank.bytecode;
@@ -13,8 +14,24 @@ module.exports = async function transfer(_data) {
 //取得目前geth中第一個account
     let nowAccount ="";
     let ownerAccount="";
+    await db.query('SELECT account_no FROM member_info WHERE card_hash = ?', _data.card_hash, function (err, rows) {
+        if (err) {
+            console.log(err);
+            console(err);
+            return;
+        }
+        //檢查有無卡片資料
+        if(rows.length < 1){
+            console.log(`length:${rows.length}`);
+            return;
+        }
+        console.log(`length:${rows.length}`);
+        ac_no = rows[0].account_no;
+        console.log(`no:${ac_no}`);
+    });
+    let ac_no;//?
     await web3.eth.getAccounts((err, res) => {
-        nowAccount = res[_data.card_ID];
+        nowAccount = res[ac_no];
         ownerAccount = res[0];
     });
     console.log(`nowAccount:${nowAccount}`);

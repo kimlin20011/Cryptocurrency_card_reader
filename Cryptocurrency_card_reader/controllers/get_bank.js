@@ -1,21 +1,25 @@
 const get_Balance = require('../models/getBalance');
+const SHA256 = require("crypto-js/sha256");
 
 module.exports = class Modify_bank {
     getBalance(req, res, next) {
         //匯入api資料
         const data = {
-            card_ID: req.body.card_ID,
+            card_hash:`0x${SHA256(req.body.card_ID)}`,
             password: req.body.password,
         };
         get_Balance(data).then(result => {
             // 若寫入成功則回傳
             res.json({
-                result: result
+                result: result,
+                state:1
             })
         }, (err) => {
             // 若寫入失敗則回傳
             res.json({
-                err: err
+                err: err,
+                info:`no card info`,
+                state:0
             })
         })
 
