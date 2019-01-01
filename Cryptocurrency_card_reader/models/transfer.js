@@ -1,4 +1,5 @@
 "use strict";
+//轉賬給店家
 const fs = require('fs');
 var Web3 = require("web3");
 var web3 = new Web3;
