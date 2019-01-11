@@ -1,4 +1,5 @@
 const get_Balance = require('../models/getBalance');
+const watch_1 = require('../models/watch');
 const SHA256 = require("crypto-js/sha256");
 
 module.exports = class Modify_bank {
@@ -23,5 +24,13 @@ module.exports = class Modify_bank {
             })
         })
 
+    }
+    watch(req, res, next) {
+        //匯入api資料
+        watch_1();
+            res.json({
+                result: `success`,
+                state:1
+            })
     }
 };

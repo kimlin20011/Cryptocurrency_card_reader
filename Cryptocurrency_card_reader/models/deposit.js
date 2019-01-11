@@ -1,10 +1,10 @@
-"use strict";
-const fs = require('fs');
+"use strict";const fs = require('fs');
 var Web3 = require("web3");
 var web3 = new Web3;
 web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
 const config = require('../config/development_config');
 const unlockAccount = require('./unlock');
+
 
 module.exports = async function deploy(_data) {
     let Bytecode = config.Bank.bytecode;

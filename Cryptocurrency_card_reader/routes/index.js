@@ -8,6 +8,7 @@ modify_bank = new Modify_bank();
 
 //get_bank
 router.get('/getBalance', get_bank.getBalance);
+router.get('/watch', get_bank.watch);
 
 //modify_bank
 router.post('/deploy', modify_bank.deployBank);
